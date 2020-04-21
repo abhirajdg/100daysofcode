@@ -1,0 +1,38 @@
+live_loop :guit do
+  with_fx :echo, mix: 0.3, phase: 0.5 do
+    #sample :guit_e_fifths, rate: 0.5
+  end
+  #sample :guit_harmonics, rate: -0.5
+  sleep 8
+end
+
+live_loop :looper do
+  4.times do
+    with_fx :reverb, room: 1 do
+      play_chord [:E], amp: 0.5
+    end
+    sleep 2
+  end
+  2.times do
+    with_fx :reverb, room: 1 do
+      play_chord [:A], amp: 0.5
+    end
+    sleep 2
+  end
+  with_fx :reverb, room: 1 do
+    play_chord [:B], amp: 0.5
+  end
+  sleep 2
+  with_fx :reverb, room: 1 do
+    play_chord [:A], amp: 0.5
+  end
+  sleep 2
+end
+
+live_loop :drum do
+  2.times do
+    #sample :bd_boom, rate: 0.7
+    sleep 1
+  end
+  sleep 2
+end

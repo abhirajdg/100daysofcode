@@ -1,0 +1,31 @@
+live_loop :melody do
+  with_fx :echo, phase: 0.3, amp: 0.5 do
+    play (scale :e3, :minor_pentatonic, num_octaves: 2).choose
+    sleep 0.5
+  end
+end
+
+live_loop :drumbass do
+  sync :melody
+  #sample :drum_bass_hard
+  sleep 2
+end
+
+live_loop :snare do
+  sync :drumbass
+  sleep 1
+  #sample :drum_snare_hard
+  sleep 1
+end
+
+live_loop :hihat do
+  sync :melody
+  #sample :drum_cymbal_closed
+  sleep 1
+  #sample :drum_cymbal_closed, amp: 0.5
+  sleep 0.5
+  #sample :drum_cymbal_closed
+  sleep 1
+  #sample :drum_cymbal_closed, amp: 0.5
+  sleep 0.5
+end

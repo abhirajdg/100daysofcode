@@ -1,0 +1,29 @@
+live_loop :breakbeat do
+  use_bpm 60
+  with_fx :slicer, phase: 0.5, wave: 0, mix: 1 do
+    sample :loop_breakbeat, beat_stretch: 2
+    sleep 2
+  end
+end
+
+live_loop :atmos do
+  use_bpm 60
+  sample :guit_em9, rate: -0.5
+  sleep 4
+end
+
+
+live_loop :landing do
+  sync :atmos
+  bass_line = (knit :e1, 3, [:c1, :c2].choose, 1)
+  with_fx :slicer, phase: [0.25, 0.5].choose, invert_wave: 1, wave: 0 do
+    s = synth :square, note: bass_line.tick, sustain: 4, cutoff: 60
+    control s, cutoff_slide: 4, cutoff: 100
+  end
+  sleep 4
+end
+
+live_loop :riff do
+  sync :breakbeat
+  play_pattern_timed chord(:E3, :m11), [0.25, 0.5], amp: 0.5
+end

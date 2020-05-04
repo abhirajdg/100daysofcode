@@ -1,0 +1,166 @@
+live_loop :bass do
+  use_synth :fm
+  use_octave -1
+  2.times do
+    play :e3
+    sleep 1
+    play :e3
+    sleep 0.7
+    play :a3
+    sleep 0.3
+    play :b3
+    sleep 1
+    play :a3
+    sleep 1
+  end
+  1.times do
+    play :a3
+    sleep 1
+    play :a3
+    sleep 0.7
+    play :d4
+    sleep 0.3
+    play :e4
+    sleep 1
+    play :d4
+    sleep 1
+  end
+  1.times do
+    play :e3
+    sleep 1
+    play :e3
+    sleep 0.7
+    play :a3
+    sleep 0.3
+    play :b3
+    sleep 1
+    play :a3
+    sleep 1
+  end
+  2.times do
+    play :b3
+    sleep 1
+    play :b3
+    sleep 0.7
+    play :e4
+    sleep 0.3
+    play :a3
+    sleep 1
+    play :a3
+    sleep 0.5
+    play :e3
+    sleep 0.5
+  end
+end
+
+
+live_loop :drums do
+  sample :drum_heavy_kick
+  sleep 1
+  sample :drum_snare_hard, amp: 0.5, pan: 0.3
+  sleep 1
+  sample :drum_heavy_kick
+  sleep 1
+  sample :drum_snare_hard, amp: 0.5, pan: 0.3
+  sleep 1
+end
+
+live_loop :hihat do
+  sample :drum_cymbal_pedal, pan: -0.5
+  sleep 0.25
+  sample :drum_cymbal_closed, pan: -0.5
+  sleep 1
+end
+
+live_loop :keys do
+  use_synth :piano
+  2.times do
+    play (chord :e, :major7), amp: 1.5, sustain: 1
+    sleep 1
+    play :e5
+    sleep 0.7
+    play :a5
+    sleep 0.3
+    play :b5
+    sleep 1
+    play :a5
+    sleep 1
+  end
+  1.times do
+    play (chord :a, :major7), amp: 1.5, sustain: 1
+    sleep 1
+    play :a5
+    sleep 0.7
+    play :d5
+    sleep 0.3
+    play :e6
+    sleep 1
+    play :d5
+    sleep 1
+  end
+  1.times do
+    play (chord :e, :major7), amp: 1.5, sustain: 1
+    sleep 1
+    play :e5
+    sleep 0.7
+    play :a5
+    sleep 0.3
+    play :b5
+    sleep 1
+    play :a5
+    sleep 1
+  end
+  2.times do
+    play (chord :b, :madd9), amp: 1.5, sustain: 1
+    sleep 1
+    play :b5
+    sleep 0.7
+    play :e6
+    sleep 0.3
+    play :a5
+    sleep 1
+    play (chord :a, :major7), amp: 1.5, sustain: 1
+    sleep 0.5
+    play (chord :e, :major7), amp: 1.5, sustain: 1
+    sleep 0.5
+  end
+end
+
+live_loop :lead do
+  use_synth :beep
+  n1 = (scale :e, :blues_major).shuffle
+  n2 = (scale :a, :mixolydian).shuffle
+  n3 = (scale :b, :blues_major).shuffle
+  with_fx :ping_pong, phase: 0.3, amp: 0.8 do
+    with_fx :flanger, phase: 0.5 do
+      32.times do
+        play n1.tick, amp: 0.2
+        sleep 0.25
+      end
+      16.times do
+        play n2.tick, amp: 0.2
+        sleep 0.25
+      end
+      16.times do
+        play n1.tick, amp: 0.2
+        sleep 0.25
+      end
+      8.times do
+        play n3.tick, amp: 0.2
+        sleep 0.25
+      end
+      8.times do
+        play n1.tick, amp: 0.2
+        sleep 0.25
+      end
+      8.times do
+        play n3.tick, amp: 0.2
+        sleep 0.25
+      end
+      8.times do
+        play n1.tick, amp: 0.2
+        sleep 0.25
+      end
+    end
+  end
+end

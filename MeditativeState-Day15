@@ -1,0 +1,11 @@
+live_loop :hum do
+  sample :ambi_glass_hum, amp: 0.7
+  sleep (range 0.3,2,0.1).choose
+end
+
+live_loop :drone do
+  use_synth :beep
+  play_pattern_timed [:a3, :d3, :e3, :a3],[8,8,4,4], attack: 1, sustain: 3, release: 2, pan: rrand(0.8, -0.8)
+  #play_pattern_timed [:b3, :e3, :a3, :fs3],[8,8,4,4], attack: 1, sustain: 3, release: 2, pan: rrand(0.8, -0.8)
+  sleep 8
+end

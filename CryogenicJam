@@ -1,0 +1,36 @@
+use_synth :dark_ambience
+with_fx :reverb, mix: 0.7 do
+  live_loop :note1 do
+    play choose([:A4,:E4]), attack: 6, release: 6, amp: 2
+    sleep 8
+  end
+  live_loop :note2 do
+    play choose([:C4,:G4]), attack: 4, release: 5, amp: 2
+    sleep 10
+  end
+  live_loop :note3 do
+    play choose([:A4, :E5]), attack: 5, release: 5, amp: 2
+    sleep 11
+  end
+end
+
+live_loop :new do
+  sample :ambi_choir, rate: rrand(-0.5,1.5)
+  sleep rrand(0.1,2)
+end
+
+with_fx :flanger, depth: 5 do
+  live_loop :tabla do
+    sample :tabla_ghe3, amp: 0.8
+    sleep 0.5
+    sample :tabla_na_o, amp: 0.6, pan: -0.5
+    sleep 0.3
+    sample :tabla_na, amp: 0.6, pan: 0.5
+    sleep 0.2
+  end
+end
+
+live_loop :glass do
+  sample :ambi_glass_hum, attack: 4, release: 2, amp: 2
+  sleep 2
+end
